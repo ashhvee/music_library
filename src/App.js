@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Gallery from './components/Gallery'
 import SearchBar from './components/SearchBar'
@@ -35,11 +35,19 @@ function App(){
 
     return (
       <div>
-        <SearchBar handleSearch = {handleSearch}/>
         {message}
-        <Gallery data={data} />
-        <AlbumView />
-        <ArtistView />
+        <Router>
+          <Routes>
+            <Route path="/" element={
+              <React.Fragment>
+                <SearchBar handleSearch = {handleSearch}/>
+                <Gallery data={data} />
+              </React.Fragment>
+            } />
+            <Route path="/album/:id" element={<AlbumView />} />
+            <Route path="/artist/:id" element={<ArtistView />} />
+          </Routes>
+        </Router>
       </div>
     )
 }
