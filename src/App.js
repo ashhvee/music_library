@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import Gallery from './components/Gallery'
 import SearchBar from './components/SearchBar'
+import { createResource as fetchData } from './helper'
+
 
 function App(){
     let [search, setSearch] = useState('')
